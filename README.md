@@ -2,6 +2,16 @@
 
 Menu bar app for displaying today's lap swim schedule at the Waverly Y in Baltimore.
 
+Or
+
+Today's lap swim schedule\* in the macOS menu bar†.
+
+![screenshot of lapswim cli](./cli-screenshot.png)
+
+\* At the Waverly Y in Baltimore
+
+† Currently cli only
+
 ## Code provenance
 
 ```sh
