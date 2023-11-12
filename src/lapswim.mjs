@@ -1,17 +1,22 @@
 //@ts-check
+import DB from './DB.mjs';
 import { firefox } from 'playwright';
-import { strOfXLength } from './utils.mjs';
+import { pools, strOfXLength } from './utils.mjs';
 
 /**
- * Parse Y schedules for lap swim times and print them to console.
+ * Parse lap swim times from Y schedules, console log them, and cache them;
+ * or console them if cached.
  */
 (async () => {
-  const waverly = 'https://ymaryland.org/locations/weinbergy/weinbergschedules';
-  const towson = 'https://ymaryland.org/locations/orokaway/orokawaschedules';
-  const pools = [{ waverly }, { towson }];
+  const now = new Date();
+
+  if (DB.isCurrent(now)) {
+    console.log(DB.output);
+
+    return;
+  }
 
   const eventType = 'Lap Swim';
-  const now = new Date();
   const weekDay = now.toLocaleDateString('en-US', { weekday: 'long' });
   const dateString = now.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -61,8 +66,10 @@ import { strOfXLength } from './utils.mjs';
     index++;
   }
 
-  console.log(output);
-
   await context.close();
   await browser.close();
+
+  console.log(output);
+
+  DB.update(now, output);
 })();
