@@ -3,9 +3,9 @@ import { firefox } from 'playwright';
 import { pools, targets, outputHeading, strOfXLength } from './utils.mjs';
 
 /**
- * Parse lap swim times from Y schedules, console log them, and cache them;
+ * Return today's lap swim times from scraped Y schedules.
  * @param {Date} now - Date object returned from `new Date()`.
- * @returns {Promise<string>} - Lap swim times formatted for display
+ * @returns {Promise<string>} - Lap swim times formatted for display.
  */
 export default async function scrape(now) {
   const { eventType, weekDay } = targets(now);

@@ -32,7 +32,7 @@ class DB {
 
   static #write() {
     /**
-     * @description Write `lastUpdated` and `output` to `lapswim.json`.
+     * @description Write `lastUpdated` and `output` to the json store.
      */
     writeFileSync(
       this.#filePath,
