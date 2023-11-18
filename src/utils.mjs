@@ -1,7 +1,7 @@
-const pools = [
-  { waverly: 'https://ymaryland.org/locations/weinbergy/weinbergschedules' },
-  { towson: 'https://ymaryland.org/locations/orokaway/orokawaschedules' }
-];
+const pools = {
+  Waverly: 'https://ymaryland.org/locations/weinbergy/weinbergschedules',
+  Towson: 'https://ymaryland.org/locations/orokaway/orokawaschedules'
+};
 
 /**
  * Provide DOM targets for Playwright locators when scraping.

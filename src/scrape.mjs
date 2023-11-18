@@ -17,12 +17,7 @@ export default async function scrape(now) {
   let index = 0;
   let output = `\n${outputHeading(now)}\n\n`;
 
-  for (const pool of pools) {
-    const name =
-      Object.keys(pool)[0].charAt(0).toUpperCase() +
-      Object.keys(pool)[0].slice(1);
-    const url = Object.values(pool)[0];
-
+  for (const [name, url] of Object.entries(pools)) {
     await page.goto(url);
 
     const swimRows = await page
@@ -46,9 +41,13 @@ export default async function scrape(now) {
 
     output += `${header}\n${swimTimes.join('\n')}`;
 
-    if (index < pools.length - 1) output += '\n\n';
+    if (index < Object.keys(pools).length - 1) {
+      output += '\n\n';
 
-    index++;
+      index++;
+    } else {
+      output += `\n\n${Object.values(pools).join('\n')}`;
+    }
   }
 
   await context.close();
