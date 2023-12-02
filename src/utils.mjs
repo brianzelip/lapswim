@@ -1,3 +1,4 @@
+//@ts-check
 const pools = {
   Waverly: 'https://ymaryland.org/locations/weinbergy/weinbergschedules',
   Towson: 'https://ymaryland.org/locations/orokaway/orokawaschedules'

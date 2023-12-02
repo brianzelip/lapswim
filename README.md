@@ -1,16 +1,69 @@
 # Lapswim
 
-Today's lap swim schedule\* in the macOS menu bar†.
+![GitHub package.json version](https://img.shields.io/github/package-json/v/brianzelip/lapswim?color=%2312b337)
+
+Today's lap swim schedule at Baltimore's Waverly and Towson Ys in the terminal.
 
 ![screenshot of lapswim cli](./cli-screenshot.png)
 
-\* At the Waverly and Towson Ys in Baltimore
+Schedules are scraped with [Playwright](https://playwright.dev/), logged to stdout, and cached in a local json file for the day. The app is ran automatically by launchd on login and every 5 minutes.
 
-† Currently cli only
+## Usage
+
+1. Clone this repo
+2. Install dependencies
+
+```sh
+npm i
+```
+
+3. Copy the sample plist file to your user agent directory and rename it
+
+```sh
+cp ./src/local.lapswim.plist.sample ~/Library/LaunchAgents/local.lapswim.plist
+```
+
+4. Edit the `Program` and `StandardErrorPath` key values in ~/Library/LaunchAgents/local.lapswim.plist so the paths correspond to your machine
+5. Load the plist file with launchd
+
+```sh
+launchctl load ~/Library/LaunchAgents/local.lapswim.plist
+```
+
+6. Set an alias in your terminal config file
+
+```sh
+# .zshrc, .bashrc, etc
+alias swim='node ~/Code/lapswim/src/lapswim.mjs'
+```
+
+7. Open a new terminal and run the `swim` alias to get today's lap swim times!
+
+```sh
+swim
+
+> Saturday, December 2
+>
+> Waverly
+> -------
+> 7:00am-8:15am (3 lanes)
+> 8:15am-12:30pm (1 lane)
+> 12:30pm-6:30pm (3 lanes)
+>
+> Towson
+> ------
+> 7:00am-8:30am (6 lanes)
+> 8:30am-12:00pm (4 lanes)
+> 12:00pm-6:45pm (4 lanes)
+>
+> https://ymaryland.org/locations/weinbergy/weinbergschedules
+> https://ymaryland.org/locations/orokaway/orokawaschedules
+```
 
 ## Resources
 
 - [`launchd` tutorial](https://launchd.info/)
+- [launchd.plist man page](https://keith.github.io/xcode-man-pages/launchd.plist.5.html)
 - https://8thlight.com/insights/tutorial-add-a-menu-bar-extra-to-a-macos-app
 - [Tauri menubar app template](https://github.com/4gray/tauri-menubar-app) - Vite and Vue, app shows in dock and `alt + tab`
   - https://betterprogramming.pub/create-menubar-app-with-tauri-510ab7f7c43d
@@ -24,25 +77,6 @@ Today's lap swim schedule\* in the macOS menu bar†.
 - [SwiftUI](https://developer.apple.com/documentation/swiftui)
 - [AppKit](https://developer.apple.com/documentation/appkit)
 - [Electron Tray tutorial](https://www.electronjs.org/docs/latest/tutorial/tray)
-
-## Code provenance
-
-```sh
-# init cli choices:
-# - JS/!TS
-# - tests/ dir
-# - do not auto install 3 browsers
-npm init playwright@latest
-
-# Install only Firefox
-npx playwright install firefox
-
-# Run tests headless
-npx playwright test
-
-# Run tests in UI mode
-npx playwright test --ui
-```
 
 ## Contributing
 

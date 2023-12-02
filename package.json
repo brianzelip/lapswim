@@ -1,11 +1,18 @@
 {
   "name": "lapswim",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Menu bar app for displaying today's lap swim schedule at the Waverly and Towson Ys in Baltimore",
   "scripts": {
-    "swim": "node ./src/lapswim.mjs"
+    "start": "node ./src/lapswim.mjs",
+    "launchd": "npm start -- launchd"
   },
-  "keywords": [],
+  "keywords": [
+    "Baltimore",
+    "swim",
+    "JavaScript",
+    "menu bar app",
+    "cli app"
+  ],
   "author": {
     "name": "Brian Zelip",
     "url": "https://zelip.me"
