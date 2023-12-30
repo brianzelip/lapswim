@@ -8,9 +8,16 @@ Today's lap swim schedule at Baltimore's Waverly and Towson Ys in the terminal.
 
 Schedules are scraped with [Playwright](https://playwright.dev/), logged to stdout, and cached in a local json file for the day. The app is ran automatically by launchd on login and every 5 minutes.
 
+### Assumptions
+
+- macOS
+- [`jq`](https://formulae.brew.sh/formula/jq#default) installed via Homebrew at /opt/homebrew/bin/jq
+- Node.js installed via [`nvm`](https://github.com/nvm-sh/nvm) at ~/.nvm
+- [`lapswim`](https://github.com/brianzelip/lapswim) installed at ~/Code
+
 ## Usage
 
-1. Clone this repo
+1. Clone `lapswim`
 2. Install dependencies
 
 ```sh
